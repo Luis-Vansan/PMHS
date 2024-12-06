@@ -51,8 +51,8 @@
     <div class="cart-items-container">
         
         <?php if (isset($_SESSION['usuario_id'])): ?> <!-- Verifica se o usuário está logado -->
-             <!-- Exibe o nome do usuário -->
-            <span class="cart-item">Olá, <?php echo htmlspecialchars($_SESSION['nome']); ?>!</span>
+            <!-- Exibe o nome do usuário -->
+            <strong><span style="font-size: 20px;" class="cart-item">Olá, <?php echo htmlspecialchars($_SESSION['nome']); ?>!</span></strong>
             <div class="profile-option">
                 <a href="logout.php" class="btn">Sair</a>
             </div>
