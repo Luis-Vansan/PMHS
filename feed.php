@@ -59,7 +59,7 @@ if (!$result) {
     <div class="search-container">
         <form action="" method="post" class="search-form">
             <div class="search-group">
-                <input type="text" name="buscado" placeholder="Buscar por nome do post" value="<?= isset($_POST['buscado']) ? htmlspecialchars($_POST['buscado']) : '' ?>" class="search-bar">
+                <input type="text" name="buscado" placeholder="Nome do exercício" value="<?= isset($_POST['buscado']) ? htmlspecialchars($_POST['buscado']) : '' ?>" class="search-bar">
 
                 <!-- Seleção de tipo -->
                 <select name="id_tipo" class="search-filter">
