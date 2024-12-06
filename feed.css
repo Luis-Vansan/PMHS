@@ -1,0 +1,181 @@
+/* Estilo geral da página */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #10243e;
+    color: #fff;
+}
+
+header {
+    background-color: #0a1a30;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+header a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logo img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+/* Formulário de busca */
+form {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+form input,
+form select {
+    padding: 0.5rem;
+    border: 1px solid #6cb7e9;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #000;
+}
+
+form button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #33c481;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+form button:hover {
+    background-color: #28a365;
+}
+
+/* Resultados */
+div h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+div h3 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+div p {
+    margin: 0.5rem 0;
+}
+
+/* Botão voltar */
+a[href="feed.php"] {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    background-color: #1abc9c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a[href="feed.php"]:hover {
+    background-color: #16a085;
+}
+
+/* Estilo dos containers das publicações */
+.container {
+    padding: 2rem;
+}
+
+/* Estilização das publicações */
+.post {
+    background-color: #0a1a30;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Barra de pesquisa e filtro */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+/* Formulário da busca */
+.search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Grupo de barra de pesquisa e filtro */
+.search-group {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+/* Barra de pesquisa */
+.search-bar {
+    padding: 10px;
+    width: 60%;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #16a085;  /* Cor verde do site */
+    font-size: 16px;
+    background-color: #ecf5f2;  /* Cor clara para fundo */
+    color: #333;  /* Cor de texto escura */
+}
+
+/* Filtro de tipo */
+.search-filter {
+    padding: 10px;
+    width: 30%;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #16a085;  /* Cor verde do site */
+    font-size: 16px;
+    background-color: #0a1a30;  /* Cor clara para fundo */
+    color: #fff;  /* Cor de texto escura */
+}
+
+/* Botão de busca */
+.search-button {
+    padding: 10px 20px;
+    background-color: #1abc9c;  /* Cor verde forte do site */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #16a085;  /* Cor verde mais escura para hover */
+}
+
+.timestamp{
+    font-size: 14px;
+    color: li;
+}
