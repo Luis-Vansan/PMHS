@@ -39,7 +39,7 @@ if (!$result_tags) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publicar Novo Post</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="feed.css">
 </head>
 <body>
     <header>Publicar Novo Post</header>
