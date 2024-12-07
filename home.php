@@ -43,17 +43,21 @@
         <div class="fas fa-bars" id="menu-btn"></div>
     </div>
 
-    <div class="search-form">
+    
+    <form action="feed.php" method="get" class="search-form">
         <input type="search" id="search-box" placeholder="search here...">
-        <label for="search-box" class="fas fa-search"></label>
-    </div>
+        <button type="submit" class="search-button fas fa-search"></button>
+    </form>
+    
 
     <div class="cart-items-container">
-        
         <?php if (isset($_SESSION['usuario_id'])): ?> <!-- Verifica se o usuário está logado -->
             <!-- Exibe o nome do usuário -->
             <strong><span style="font-size: 20px;" class="cart-item">Olá, <?php echo htmlspecialchars($_SESSION['nome']); ?>!</span></strong>
             <div class="profile-option">
+                <?php if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1): ?> <!-- Verifica se o usuário é administrador -->
+                    <a href="feedadm.php" class="btn">Publicar</a>
+                <?php endif; ?>
                 <a href="logout.php" class="btn">Sair</a>
             </div>
         <?php else: ?>
@@ -62,6 +66,7 @@
             </div>
         <?php endif; ?>
     </div>
+
 
 </header>
 
@@ -130,7 +135,7 @@
     <div class="row">
 
         <div class="image">
-            <img src="images/about-img.jpeg" alt="">
+            <img src="images/about-us.png" alt="">
         </div>
 
         <div class="content">

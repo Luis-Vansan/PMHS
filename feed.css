@@ -81,7 +81,7 @@ div p {
 }
 
 /* Botão voltar */
-a[href="feed.php"] {
+a[href="feedadm.php"] {
     display: inline-block;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
@@ -91,7 +91,7 @@ a[href="feed.php"] {
     border-radius: 5px;
 }
 
-a[href="feed.php"]:hover {
+a[href="feedadm.php"]:hover {
     background-color: #16a085;
 }
 

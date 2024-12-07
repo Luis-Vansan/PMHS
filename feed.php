@@ -10,9 +10,9 @@ $q = "
     WHERE 1=1
 ";
 
-// Adiciona o filtro de busca por nome, se fornecido
-if (isset($_POST['buscado']) && $_POST['buscado'] != "") {
-    $buscado = $con->real_escape_string($_POST['buscado']);
+// Modifica para aceitar tanto POST quanto GET
+if ((isset($_POST['buscado']) && $_POST['buscado'] != "") || (isset($_GET['search']) && $_GET['search'] != "")) {
+    $buscado = isset($_POST['buscado']) ? $con->real_escape_string($_POST['buscado']) : $con->real_escape_string($_GET['search']);
     $q .= " AND posts.nome LIKE '%$buscado%'";
 }
 
@@ -51,7 +51,7 @@ if (!$result) {
 <body>
     <header style="margin-bottom: 30px;">
         <a href="home.php" class="logo">
-            <img src="pmhs.png" alt="PMHS Logo">
+            <img src="images/logo.jpg" alt="PMHS Logo">
         </a>
     </header>
 
@@ -59,7 +59,7 @@ if (!$result) {
     <div class="search-container">
         <form action="" method="post" class="search-form">
             <div class="search-group">
-                <input type="text" name="buscado" placeholder="Nome do exercício" value="<?= isset($_POST['buscado']) ? htmlspecialchars($_POST['buscado']) : '' ?>" class="search-bar">
+                <input type="text" name="buscado" placeholder="Nome do exercício" value="<?= isset($_POST['buscado']) ? htmlspecialchars($_POST['buscado']) : (isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '') ?>" class="search-bar">
 
                 <!-- Seleção de tipo -->
                 <select name="id_tipo" class="search-filter">
@@ -80,11 +80,10 @@ if (!$result) {
 
     <!-- Exibição de resultados -->
     <div>
-        <?php if (isset($_POST['buscado']) && $_POST['buscado'] != ""): ?>
-            <!-- Botão Voltar -->
+        <?php if ((isset($_POST['buscado']) && $_POST['buscado'] != "") || (isset($_GET['search']) && $_GET['search'] != "")): ?>
             <div style="margin-top: 20px; text-align: center;">
                 <a href="feed.php">
-                <strong>Voltar</strong>
+                    <strong>Voltar</strong>
                 </a>
             </div>
         <?php endif; ?>

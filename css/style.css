@@ -20,6 +20,8 @@
 html{
     font-size: 62.5%;
     overflow-x: hidden;
+    overflow-y: scroll; /* tire para aparecer barra de rolagem */
+    scrollbar-width: none; /* tire para aparecer barra de rolagem */
     scroll-padding-top: 9rem;
     scroll-behavior: smooth;
 }
@@ -639,4 +641,19 @@ section{
         font-size: 50%;
     }
 
+}
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px; /* Mantém o tamanho do ícone original */
+    color: inherit; /* Usa a cor do texto atual */
+    padding: 0;
+    margin-left: 10px; /* Ajuste o espaçamento conforme necessário */
+    margin-right: 10px;
 }

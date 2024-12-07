@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $con->query("INSERT INTO post_tags (id_post, id_tag) VALUES ($id_post, $id_tag)");
         }
 
-        header("Location: feed.php");
+        header("Location: feedadm.php");
         exit();
     } else {
         echo "<p>Erro ao publicar o post: " . $con->error . "</p>";
@@ -62,7 +62,7 @@ if (!$result_tags) {
                 <button type="submit">Publicar</button>
             </div>
         </form>
-        <p><a href="feed.php">Voltar ao Feed</a></p>
+        <p><a href="feedadm.php">Voltar ao Feed</a></p>
     </div>
 </body>
 </html>
