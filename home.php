@@ -45,7 +45,7 @@
 
     
     <form action="feed.php" method="get" class="search-form">
-        <input type="search" id="search-box" placeholder="search here...">
+        <input type="search" name="search" id="search-box" placeholder="search here...">
         <button type="submit" class="search-button fas fa-search"></button>
     </form>
     

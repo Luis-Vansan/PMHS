@@ -80,7 +80,7 @@ div p {
     margin: 0.5rem 0;
 }
 
-/* Botão voltar */
+/* Botão voltar feedadm.php*/
 a[href="feedadm.php"] {
     display: inline-block;
     padding: 0.5rem 1rem;
@@ -92,6 +92,21 @@ a[href="feedadm.php"] {
 }
 
 a[href="feedadm.php"]:hover {
+    background-color: #16a085;
+}
+
+/* Botão voltar feed.php*/
+a[href="feed.php"] {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    background-color: #1abc9c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a[href="feed.php"]:hover {
     background-color: #16a085;
 }
 
