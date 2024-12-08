@@ -97,6 +97,11 @@ if (!$result) {
                         <p><?= nl2br(htmlspecialchars($row['conteudo'])) ?></p>
                         <p><strong>Tipo(s):</strong> <?= htmlspecialchars($row['tipos']) ?></p>
                         <p class="timestamp">Publicado em: <?= date('d/m/Y H:i', strtotime($row['data_post'])) ?></p>
+                        
+                        <!-- Adiciona o link da fonte -->
+                        <?php if (!empty($row['fonte'])): ?>
+                            <p><strong>Fonte:</strong> <a href="<?= htmlspecialchars($row['fonte']) ?>" target="_blank" rel="noopener noreferrer"><?= htmlspecialchars($row['fonte']) ?></a></p>
+                        <?php endif; ?>
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>

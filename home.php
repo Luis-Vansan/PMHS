@@ -90,16 +90,18 @@
 <!-- blogs section starts  -->
 
 <section class="blogs" id="blogs">
-        <h1 class="heading">Artigos <span>/ Exercícios</span></h1>
-        <div class="box-container">
+    <h1 class="heading">Artigos <span>/ Exercícios</span></h1>
+    <div class="box-container">
         <?php
-        // Query para obter as 3 publicações mais recentes
-        $sql = "SELECT nome, conteudo, data_post, imagem_url FROM posts ORDER BY data_post DESC LIMIT 3";
+        // Query para obter as 3 publicações mais recentes, incluindo o link da fonte
+        $sql = "SELECT nome, conteudo, data_post, imagem_url, fonte FROM posts ORDER BY data_post DESC LIMIT 3";
         $result = $con->query($sql);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $image_url = $row['imagem_url'] ? htmlspecialchars($row['imagem_url']) : 'images/default-blog.jpg';
+                $fonte_url = $row['fonte'] ? htmlspecialchars($row['fonte']) : '#'; // Link da fonte ou fallback se não houver
+
                 echo '
                 <div class="box">
                     <div class="image">
@@ -109,7 +111,7 @@
                         <a href="#" class="title">' . htmlspecialchars($row['nome']) . '</a>
                         <span>' . date("d M, Y", strtotime($row['data_post'])) . '</span>
                         <p>' . substr(htmlspecialchars($row['conteudo']), 0, 100) . '...</p>
-                        <a href="#" class="btn">read more</a>
+                        <a href="' . $fonte_url . '" class="btn" target="_blank">read more</a>
                     </div>
                 </div>';
             }
@@ -120,7 +122,9 @@
         // Fecha a conexão com o banco de dados
         $con->close();
         ?>
+    </div>
 </section>
+
 
 
 <!-- blogs section ends -->

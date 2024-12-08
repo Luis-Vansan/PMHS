@@ -1,14 +1,15 @@
-<?php
+<?php 
 require 'conexao.php'; // Inclui a conexão com o banco
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $con->real_escape_string($_POST['nome']);
     $conteudo = $con->real_escape_string($_POST['conteudo']);
     $imagem_url = $con->real_escape_string($_POST['imagem_url']);
+    $fonte = $con->real_escape_string($_POST['fonte']); // Novo campo para a fonte
     $tipos = $_POST['tipos']; // Array com os IDs das tags selecionadas
 
-    // Insere o post
-    $sql = "INSERT INTO posts (nome, conteudo, imagem_url) VALUES ('$nome', '$conteudo', '$imagem_url')";
+    // Insere o post com a fonte
+    $sql = "INSERT INTO posts (nome, conteudo, imagem_url, fonte) VALUES ('$nome', '$conteudo', '$imagem_url', '$fonte')";
     if ($con->query($sql) === TRUE) {
         $id_post = $con->insert_id; // ID do post recém-inserido
 
@@ -24,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "<p>Erro ao publicar o post: " . $con->error . "</p>";
     }
 }
-
 
 // Busca os tipos de tags para exibir no formulário
 $sql_tags = "SELECT id_tag, tipo FROM tags";
@@ -52,6 +52,8 @@ if (!$result_tags) {
         <textarea class="textinho" name="conteudo" placeholder="Sobre" rows="7" style="width: 400px; padding: 5px; font-size: 14px;" required></textarea>
         <br><br>
         <input type="text" name="imagem_url" placeholder="URL da Imagem" style="width: 400px; padding: 5px; font-size: 14px;" required>
+        <br><br>
+        <input type="text" name="fonte" placeholder="Fonte (URL)" style="width: 400px; padding: 5px; font-size: 14px;">
         <br><br>
         <div class="fonte_branca">
             <strong><p style="font-size: 25px;">Selecione os tipos:</p></strong>

@@ -77,6 +77,8 @@ if (isset($_GET['id'])) {
             <br><br>
             <input type="text" name="imagem_url" placeholder="URL da Imagem" value="<?= htmlspecialchars($post['imagem_url']); ?>" style="width: 400px; padding: 5px; font-size: 14px;" required>
             <br><br>
+            <input type="text" name="fonte" placeholder="Link do Post" value="<?= htmlspecialchars($post['fonte']); ?>" style="width: 400px; padding: 5px; font-size: 14px;">
+            <br><br>
             <div class="fonte_branca">
                 <strong><p style="font-size: 25px;">Selecione os tipos:</p></strong>
                 <?php while ($tag = $result_tags->fetch_assoc()): ?>

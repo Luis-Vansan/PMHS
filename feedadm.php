@@ -45,7 +45,7 @@ if (!$result) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feed Principal</title>
+    <title>Feed Administrativo</title>
     <link rel="stylesheet" href="feed.css">
 </head>
 <body>
@@ -104,6 +104,7 @@ if (!$result) {
                         <p><?= nl2br(htmlspecialchars($row['conteudo'])) ?></p>
                         <p><strong>Tipo(s):</strong> <?= htmlspecialchars($row['tipos']) ?></p>
                         <p class="timestamp">Publicado em: <?= date('d/m/Y H:i', strtotime($row['data_post'])) ?></p>
+                        <p><strong>Fonte:</strong> <a href="<?= htmlspecialchars($row['fonte']) ?>" target="_blank"><?= htmlspecialchars($row['fonte']) ?></a></p>
 
                         <!-- Botões de ações -->
                         <div class="actions">
@@ -123,5 +124,6 @@ if (!$result) {
             <?php endif; ?>
         </div>
     </div>
+
 </body>
 </html>
