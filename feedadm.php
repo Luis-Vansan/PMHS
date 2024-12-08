@@ -104,6 +104,18 @@ if (!$result) {
                         <p><?= nl2br(htmlspecialchars($row['conteudo'])) ?></p>
                         <p><strong>Tipo(s):</strong> <?= htmlspecialchars($row['tipos']) ?></p>
                         <p class="timestamp">Publicado em: <?= date('d/m/Y H:i', strtotime($row['data_post'])) ?></p>
+
+                        <!-- Botões de ações -->
+                        <div class="actions">
+                            <form action="editar.php" method="get" style="display: inline;">
+                                <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                <button type="submit" class="edit-button">Editar</button>
+                            </form>
+                            <form action="excluir.php" method="get" style="display: inline;">
+                                <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                                <button type="submit" class="delete-button" onclick="return confirm('Tem certeza que deseja excluir este post?')">Excluir</button>
+                            </form>
+                        </div>
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
