@@ -92,35 +92,34 @@
 <section class="blogs" id="blogs">
         <h1 class="heading">Artigos <span>/ Exercícios</span></h1>
         <div class="box-container">
-            <?php
-            // Query para obter as 3 publicações mais recentes
-            $sql = "SELECT nome, conteudo, data_post FROM posts ORDER BY data_post DESC LIMIT 3";
-            $result = $con->query($sql);
+        <?php
+        // Query para obter as 3 publicações mais recentes
+        $sql = "SELECT nome, conteudo, data_post, imagem_url FROM posts ORDER BY data_post DESC LIMIT 3";
+        $result = $con->query($sql);
 
-            if ($result->num_rows > 0) {
-                // Loop para exibir as publicações
-                while ($row = $result->fetch_assoc()) {
-                    echo '
-                    <div class="box">
-                        <div class="image">
-                            <img src="images/blog-1.jpeg" alt=""> <!-- Modifique para incluir a imagem real -->
-                        </div>
-                        <div class="content">
-                            <a href="#" class="title">' . htmlspecialchars($row['nome']) . '</a>
-                            <span>' . date("d M, Y", strtotime($row['data_post'])) . '</span>
-                            <p>' . substr(htmlspecialchars($row['conteudo']), 0, 100) . '...</p>
-                            <a href="#" class="btn">read more</a>
-                        </div>
-                    </div>';
-                }
-            } else {
-                echo '<p>No recent posts available.</p>';
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $image_url = $row['imagem_url'] ? htmlspecialchars($row['imagem_url']) : 'images/default-blog.jpg';
+                echo '
+                <div class="box">
+                    <div class="image">
+                        <img src="' . $image_url . '" alt="Blog Image">
+                    </div>
+                    <div class="content">
+                        <a href="#" class="title">' . htmlspecialchars($row['nome']) . '</a>
+                        <span>' . date("d M, Y", strtotime($row['data_post'])) . '</span>
+                        <p>' . substr(htmlspecialchars($row['conteudo']), 0, 100) . '...</p>
+                        <a href="#" class="btn">read more</a>
+                    </div>
+                </div>';
             }
+        } else {
+            echo '<p>No recent posts available.</p>';
+        }
 
-            // Fecha a conexão com o banco de dados
-            $con->close();
-            ?>
-        </div>
+        // Fecha a conexão com o banco de dados
+        $con->close();
+        ?>
 </section>
 
 
