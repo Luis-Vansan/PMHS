@@ -1,46 +1,51 @@
 <?php
-    require 'conexao.php'; // Inclui a conexão com o banco
+require 'conexao.php'; // Inclui a conexão com o banco
 
-    // Verifica se o método de requisição é POST
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if (isset($_POST['id'])) {
-            $id_post = (int)$_POST['id'];
-            $nome = $con->real_escape_string($_POST['nome']);
-            $conteudo = $con->real_escape_string($_POST['conteudo']);
-            $imagem_url = $con->real_escape_string($_POST['imagem_url']);
-            // Verifica se o campo 'fonte' foi enviado e não está vazio
-            $fonte = isset($_POST['fonte']) && $_POST['fonte'] !== '' ? "'" . $con->real_escape_string($_POST['fonte']) . "'" : "NULL";
+// Verifica se o método de requisição é POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['id'])) {
+        $id_post = (int)$_POST['id'];
+        $nome = $_POST['nome'];
+        $conteudo = $_POST['conteudo'];
+        $imagem_url = $_POST['imagem_url'];
+        $fonte = isset($_POST['fonte']) && $_POST['fonte'] !== '' ? $_POST['fonte'] : NULL;
+        $tipos = isset($_POST['tipos']) ? $_POST['tipos'] : [];
+        $media_type = $_POST['media_type'];
+        $video_url = ($media_type === 'youtube') ? $_POST['video_url'] : NULL;
+        $gif_url = ($media_type === 'gif') ? $_POST['gif_url'] : NULL;
 
-            $tipos = isset($_POST['tipos']) ? $_POST['tipos'] : [];
+        // Prepara a consulta SQL com parâmetros
+        $stmt = $con->prepare("UPDATE posts SET nome = ?, conteudo = ?, imagem_url = ?, video_url = ?, gif_url = ?, media_type = ?, fonte = ? WHERE id = ?");
+        $stmt->bind_param('sssssssi', $nome, $conteudo, $imagem_url, $video_url, $gif_url, $media_type, $fonte, $id_post);
 
-    
-            // Atualiza o post na tabela `posts`
-            $sql = "UPDATE posts SET nome = '$nome', conteudo = '$conteudo', imagem_url = '$imagem_url', fonte = $fonte WHERE id = $id_post";
+        if ($stmt->execute()) {
+            // Primeiro, exclui as tags antigas associadas ao post
+            $con->query("DELETE FROM post_tags WHERE id_post = $id_post");
 
-            if ($con->query($sql) === TRUE) {
-                // Primeiro, exclui as tags antigas associadas ao post
-                $con->query("DELETE FROM post_tags WHERE id_post = $id_post");
-    
-                // Insere as novas tags associadas ao post
-                foreach ($tipos as $id_tag) {
-                    $id_tag = (int)$id_tag;
-                    $con->query("INSERT INTO post_tags (id_post, id_tag) VALUES ($id_post, $id_tag)");
-                }
-    
-                echo "Post atualizado com sucesso.";
-                header("Location: feedadm.php"); // Redireciona após a atualização
-                exit();
-            } else {
-                echo "<p>Erro ao atualizar o post: " . $con->error . "</p>";
+            // Insere as novas tags associadas ao post
+            $stmt_tag = $con->prepare("INSERT INTO post_tags (id_post, id_tag) VALUES (?, ?)");
+            foreach ($tipos as $id_tag) {
+                $id_tag = (int)$id_tag;
+                $stmt_tag->bind_param('ii', $id_post, $id_tag);
+                $stmt_tag->execute();
             }
+
+            $stmt_tag->close();
+            echo "Post atualizado com sucesso.";
+            header("Location: feedadm.php");
+            exit();
         } else {
-            echo "ID do post não especificado.";
+            echo "<p>Erro ao atualizar o post: " . $stmt->error . "</p>";
         }
+
+        $stmt->close();
     } else {
-        echo "Método de requisição inválido.";
+        echo "ID do post não especificado.";
     }
-    
-    // Fecha a conexão
-    $con->close();
-    
+} else {
+    echo "Método de requisição inválido.";
+}
+
+// Fecha a conexão
+$con->close();
 ?>

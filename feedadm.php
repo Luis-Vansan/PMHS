@@ -1,4 +1,4 @@
-<?php
+<?php  
 require 'conexao.php'; // Inclui a conexão com o banco
 
 // Verifica se foi realizada uma busca ou filtro
@@ -37,6 +37,12 @@ $result_tags = $con->query($query_tags);
 
 if (!$result) {
     die("Erro na consulta de posts: " . $con->error);
+}
+
+// Função para extrair o ID do vídeo do YouTube da URL
+function getYoutubeVideoId($url) {
+    preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i', $url, $matches);
+    return isset($matches[1]) ? $matches[1] : null;
 }
 ?>
 
@@ -81,7 +87,7 @@ if (!$result) {
     <!-- Botão Adicionar -->
     <div style="margin-top: 20px; text-align: center;">
         <a href="publicar.php">
-        <button type="button" class="search-button"><strong>Adicionar</strong></button>
+            <button type="button" class="search-button"><strong>Adicionar</strong></button>
         </a>
     </div>
 
@@ -100,11 +106,33 @@ if (!$result) {
             <?php if ($result->num_rows > 0): ?>
                 <?php while ($row = $result->fetch_assoc()): ?>
                     <div class="post">
-                        <h3><?= htmlspecialchars($row['nome']) ?></h3>
-                        <p><?= nl2br(htmlspecialchars($row['conteudo'])) ?></p>
-                        <p><strong>Tipo(s):</strong> <?= htmlspecialchars($row['tipos']) ?></p>
-                        <p class="timestamp">Publicado em: <?= date('d/m/Y H:i', strtotime($row['data_post'])) ?></p>
-                        <p><strong>Fonte:</strong> <a href="<?= htmlspecialchars($row['fonte']) ?>" target="_blank"><?= htmlspecialchars($row['fonte']) ?></a></p>
+                        <h3 style="text-align: center;"><?= htmlspecialchars($row['nome']) ?></h3>
+                        
+                        <?php if ($row['media_type'] === 'youtube' && !empty($row['video_url'])): ?>
+                            <?php $videoId = getYoutubeVideoId($row['video_url']); ?>
+                            <?php if ($videoId): ?>
+                                <div class="video-container" style="position: relative; padding-bottom: 30%; height: 0; overflow: hidden; margin: 0 auto 20px; max-width: 500px;">
+                                    <iframe 
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                                        src="https://www.youtube.com/embed/<?= $videoId ?>"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            <?php else: ?>
+                                <p style="text-align: center; color: red;">Erro ao processar o vídeo do YouTube.</p>
+                            <?php endif; ?>
+                        <?php elseif ($row['media_type'] === 'gif' && !empty($row['gif_url'])): ?>
+                            <div style="text-align: center; margin-bottom: 20px;">
+                                <img src="<?= htmlspecialchars($row['gif_url']) ?>" alt="GIF" style="max-width: 500px; width: 100%;">
+                            </div>
+                        <?php endif; ?>
+
+                        <p style="margin: 0 0 10px 20px; white-space: pre-wrap; word-break: break-word; text-align: justify;"><?= nl2br(htmlspecialchars($row['conteudo'])) ?></p>
+                        <p style="margin: 0 0 10px 20px;"><strong>Tipo(s):</strong> <?= htmlspecialchars($row['tipos']) ?></p>
+                        <p class="timestamp" style="margin: 0 0 10px 20px;">Publicado em: <?= date('d/m/Y H:i', strtotime($row['data_post'])) ?></p>
+                        <p style="margin: 0 0 10px 20px;"><strong>Fonte:</strong> <a href="<?= htmlspecialchars($row['fonte']) ?>" target="_blank"><?= htmlspecialchars($row['fonte']) ?></a></p>
 
                         <!-- Botões de ações -->
                         <div class="actions">
@@ -124,6 +152,5 @@ if (!$result) {
             <?php endif; ?>
         </div>
     </div>
-
 </body>
 </html>

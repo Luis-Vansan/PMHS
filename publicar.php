@@ -5,11 +5,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $con->real_escape_string($_POST['nome']);
     $conteudo = $con->real_escape_string($_POST['conteudo']);
     $imagem_url = $con->real_escape_string($_POST['imagem_url']);
-    $fonte = $con->real_escape_string($_POST['fonte']); // Novo campo para a fonte
-    $tipos = $_POST['tipos']; // Array com os IDs das tags selecionadas
+    $fonte = $con->real_escape_string($_POST['fonte']);
+    $media_type = $con->real_escape_string($_POST['media_type']);
+    
+    // Inicializa as URLs como null
+    $video_url = null;
+    $gif_url = null;
+    
+    // Define a URL apropriada baseada no tipo de mídia
+    if ($media_type === 'youtube') {
+        $video_url = $con->real_escape_string($_POST['video_url']);
+    } elseif ($media_type === 'gif') {
+        $gif_url = $con->real_escape_string($_POST['gif_url']);
+    }
+    
+    $tipos = $_POST['tipos'];
 
-    // Insere o post com a fonte
-    $sql = "INSERT INTO posts (nome, conteudo, imagem_url, fonte) VALUES ('$nome', '$conteudo', '$imagem_url', '$fonte')";
+    $sql = "INSERT INTO posts (nome, conteudo, imagem_url, video_url, gif_url, media_type, fonte) 
+            VALUES ('$nome', '$conteudo', '$imagem_url', " . 
+            ($video_url ? "'$video_url'" : "NULL") . ", " .
+            ($gif_url ? "'$gif_url'" : "NULL") . ", " .
+            "'$media_type', '$fonte')";
     if ($con->query($sql) === TRUE) {
         $id_post = $con->insert_id; // ID do post recém-inserido
 
@@ -47,14 +63,39 @@ if (!$result_tags) {
     <header>Publicar Novo Post</header>
     <div class="container centro">
     <form method="POST" action="">
-        <input type="text" name="nome" placeholder="Seu nome ou apelido" style="width: 200px; padding: 5px; font-size: 14px;" required>
-        <br><br>
-        <textarea class="textinho" name="conteudo" placeholder="Sobre" rows="7" style="width: 400px; padding: 5px; font-size: 14px;" required></textarea>
-        <br><br>
-        <input type="text" name="imagem_url" placeholder="URL da Imagem" style="width: 400px; padding: 5px; font-size: 14px;" required>
-        <br><br>
-        <input type="text" name="fonte" placeholder="Fonte (URL)" style="width: 400px; padding: 5px; font-size: 14px;">
-        <br><br>
+        <div>
+            <input type="text" name="nome" placeholder="Seu nome ou apelido" style="width: 200px; padding: 5px; font-size: 14px;" required>
+            <br><br>
+            <textarea class="textinho" name="conteudo" placeholder="Sobre" rows="7" style="width: 400px; padding: 5px; font-size: 14px;" required></textarea>
+            <br><br>
+            <input type="text" name="imagem_url" placeholder="URL da Imagem" style="width: 400px; padding: 5px; font-size: 14px;" required>
+            <br><br>
+            <input type="text" name="fonte" placeholder="Fonte (URL)" style="width: 400px; padding: 5px; font-size: 14px;">
+            <br><br>
+        </div>
+        
+        <div class="media-selection" style="margin-bottom: 20px;">
+            <strong>Escolha o tipo de mídia:</strong><br>
+            <label>
+                <input type="radio" name="media_type" value="none" checked> Nenhuma mídia
+            </label><br>
+            <label>
+                <input type="radio" name="media_type" value="gif"> GIF
+            </label><br>
+            <label>
+                <input type="radio" name="media_type" value="youtube"> Vídeo do YouTube
+            </label>
+        </div>
+
+        <div id="gif_input" style="display: none;">
+            <input type="text" name="gif_url" placeholder="URL do GIF" style="width: 400px; padding: 5px; font-size: 14px;">
+            <br><br>
+        </div>
+
+        <div id="youtube_input" style="display: none;">
+            <input type="text" name="video_url" placeholder="URL do vídeo do YouTube" style="width: 400px; padding: 5px; font-size: 14px;">
+            <br><br>
+        </div>
         <div class="fonte_branca">
             <strong><p style="font-size: 25px;">Selecione os tipos:</p></strong>
             <?php while ($tag = $result_tags->fetch_assoc()): ?>
@@ -71,5 +112,19 @@ if (!$result_tags) {
 
         <p><a href="feedadm.php">Voltar ao Feed</a></p>
     </div>
+    <script>
+    document.querySelectorAll('input[name="media_type"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.getElementById('gif_input').style.display = 'none';
+            document.getElementById('youtube_input').style.display = 'none';
+            
+            if (this.value === 'gif') {
+                document.getElementById('gif_input').style.display = 'block';
+            } else if (this.value === 'youtube') {
+                document.getElementById('youtube_input').style.display = 'block';
+            }
+        });
+    });
+    </script>
 </body>
 </html>
