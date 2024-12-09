@@ -136,7 +136,7 @@ function getYoutubeVideoId($url) {
 
                         <!-- Botões de ações -->
                         <div class="actions">
-                            <form action="editar.php" method="get" style="display: inline;">
+                            <form action="editar.php" method="get" style="display: inline; margin-left: 20px">
                                 <input type="hidden" name="id" value="<?= $row['id'] ?>">
                                 <button type="submit" class="edit-button">Editar</button>
                             </form>
