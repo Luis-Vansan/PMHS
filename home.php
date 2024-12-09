@@ -111,7 +111,7 @@
                         <a href="#" class="title">' . htmlspecialchars($row['nome']) . '</a>
                         <span>' . date("d M, Y", strtotime($row['data_post'])) . '</span>
                         <p>' . substr(htmlspecialchars($row['conteudo']), 0, 100) . '...</p>
-                        <a href="' . $fonte_url . '" class="btn" target="_blank">read more</a>
+                        <a href="feed.php?search=' . urlencode($row['nome']) . '" class="btn">read more</a>
                     </div>
                 </div>';
             }
