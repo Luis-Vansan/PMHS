@@ -159,35 +159,39 @@
 <!-- review section starts  -->
 
 <section class="review" id="review">
-
-    <h1 class="heading"> customer's <span>review</span> </h1>
-
+    <h1 class="heading">PMHS <span>Developers</span></h1>
     <div class="box-container">
 
+        <!-- Desenvolvedor 1 -->
         <div class="box">
-            <img src="images/quote-img.png" alt="" class="quote">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero nemo fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-            <img src="images/pic-1.png" class="user" alt="">
-            <h3>john deo</h3>
+            <img src="images/LuisVansan.jpeg" class="user" alt="Foto de Luis Vansan">
+            <h3>Luis Vansan</h3>
+            <p><strong>Cargo:</strong> Desenvolvedor Back-end</p>
+            <p>Luis é um estudante dedicado do IFSP-CMP, com uma forte paixão por desenvolvimento de soluções back-end. Ele possui habilidades em PHP, JavaScript e frameworks, e está sempre em busca de aprender novas tecnologias para melhorar suas habilidades.</p>
+            <p><a href="https://www.instagram.com/luis.vansan.5/" target="_blank">Instagram</a> | <a href="https://github.com/Luis-Vansan" target="_blank">GitHub</a></p>
         </div>
 
+        <!-- Desenvolvedor 2 -->
         <div class="box">
-            <img src="images/quote-img.png" alt="" class="quote">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero nemo fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-            <img src="images/pic-2.png" class="user" alt="">
-            <h3>john deo</h3>
+            <img src="images/PedroMigas.png" class="user" alt="Foto de Pedro Miguel">
+            <h3>Pedro Miguel</h3>
+            <p><strong>Cargo:</strong> Desenvolvedor Front-end</p>
+            <p>Pedro é um estudante do IFSP-CMP com um forte foco em desenvolvimento front-end. Ele se destaca na criação de interfaces de usuário intuitivas e responsivas, utilizando tecnologias como HTML, CSS e JavaScript. Ele está sempre buscando aprimorar suas habilidades e contribuir para projetos desafiadores.</p>
+            <p><a href="https://www.instagram.com/pedro_sarur/" target="_blank">Instagram</a> | <a href="https://github.com/Pedro-Miguel-S" target="_blank">GitHub</a></p>
         </div>
-        
+
+        <!-- Desenvolvedor 3 -->
         <div class="box">
-            <img src="images/quote-img.png" alt="" class="quote">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi nulla sit libero nemo fuga sequi nobis? Necessitatibus aut laborum, nisi quas eaque laudantium consequuntur iste ex aliquam minus vel? Nemo.</p>
-            <img src="images/pic-3.png" class="user" alt="">
-            <h3>john deo</h3>
+            <img src="images/pic-3.png" class="user" alt="Foto de Matheus Santos">
+            <h3>Matheus Santos</h3>
+            <p><strong>Cargo:</strong> Analista de Dados</p>
+            <p>Matheus é um estudante do IFSP-CMP com experiência em análise de dados e manipulação de grandes volumes de informação. Ele possui um grande interesse em encontrar insights valiosos e aplicar soluções analíticas para apoiar a tomada de decisões. Com habilidades em ferramentas de análise de dados, Matheus busca contribuir para a eficiência dos projetos do time.</p>
+            <p><a href="https://www.instagram.com/_matsans/" target="_blank">Instagram</a> | <a href="https://github.com/Mat800yy" target="_blank">GitHub</a></p>
         </div>
 
     </div>
-
 </section>
+
 
 <!-- review section ends -->
 
