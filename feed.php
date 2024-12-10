@@ -22,14 +22,49 @@ if (isset($_POST['id_tipo']) && $_POST['id_tipo'] != "") {
     $q .= " AND post_tags.id_tag = $id_tipo";
 }
 
-// Agrupa e ordena os resultados
+// Adiciona paginação
+$posts_por_pagina = 5;
+$pagina_atual = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+$offset = ($pagina_atual - 1) * $posts_por_pagina;
+
+// Modifica a query principal para incluir LIMIT
 $q .= "
     GROUP BY posts.id
     ORDER BY posts.data_post DESC
+    LIMIT $posts_por_pagina OFFSET $offset
 ";
+
+// Adiciona query para contar total de posts
+$q_total = "
+    SELECT COUNT(DISTINCT posts.id) as total 
+    FROM posts 
+    LEFT JOIN post_tags ON posts.id = post_tags.id_post
+    LEFT JOIN tags ON post_tags.id_tag = tags.id_tag
+    WHERE 1=1
+";
+
+// Adiciona os mesmos filtros à query de contagem
+if ((isset($_POST['buscado']) && $_POST['buscado'] != "") || (isset($_GET['search']) && $_GET['search'] != "")) {
+    $buscado = isset($_POST['buscado']) ? $con->real_escape_string($_POST['buscado']) : $con->real_escape_string($_GET['search']);
+    $q_total .= " AND posts.nome LIKE '%$buscado%'";
+}
+
+if (isset($_POST['id_tipo']) && $_POST['id_tipo'] != "") {
+    $id_tipo = (int)$_POST['id_tipo'];
+    $q_total .= " AND post_tags.id_tag = $id_tipo";
+}
 
 // Executa a consulta
 $result = $con->query($q);
+
+// Executa a consulta de contagem
+$result_total = $con->query($q_total);
+$row_total = $result_total->fetch_assoc();
+$total_posts = $row_total['total'];
+$tem_mais_posts = ($pagina_atual * $posts_por_pagina) < $total_posts;
+
+// Calcula o total de páginas
+$total_paginas = ceil($total_posts / $posts_por_pagina);
 
 // Consulta para listar os tipos de tags disponíveis
 $query_tags = "SELECT * FROM tags";
@@ -130,6 +165,54 @@ function getYoutubeVideoId($url) {
                 <?php endwhile; ?>
             <?php else: ?>
                 <p>Nenhuma publicação encontrada.</p>
+            <?php endif; ?>
+            
+            <?php if ($total_paginas > 1): ?>
+                <div class="paginacao" style="text-align: center; margin: 20px 0;">
+                    <?php
+                    // Prepara os parâmetros base da URL
+                    $params = [];
+                    if (isset($_POST['buscado']) || isset($_GET['search'])) {
+                        $params['search'] = isset($_POST['buscado']) ? $_POST['buscado'] : $_GET['search'];
+                    }
+                    if (isset($_POST['id_tipo'])) {
+                        $params['id_tipo'] = $_POST['id_tipo'];
+                    }
+
+                    // Estilo para os links de paginação
+                    $link_style = "display: inline-block; padding: 5px 10px; margin: 0 2px; text-decoration: none; border: 1px solid #007bff; border-radius: 3px;";
+                    $active_style = $link_style . "background-color: #007bff; color: white;";
+                    $inactive_style = $link_style . "background-color: white; color: #007bff;";
+
+                    // Mostra link para primeira página se necessário
+                    if ($pagina_atual > 3) {
+                        $params['pagina'] = 1;
+                        $url = '?' . http_build_query($params);
+                        echo "<a href='$url' style='$inactive_style'>1</a>";
+                        if ($pagina_atual > 4) {
+                            echo "<span style='margin: 0 5px;'>...</span>";
+                        }
+                    }
+
+                    // Mostra páginas ao redor da página atual
+                    for ($i = max(1, $pagina_atual - 2); $i <= min($total_paginas, $pagina_atual + 2); $i++) {
+                        $params['pagina'] = $i;
+                        $url = '?' . http_build_query($params);
+                        $style = ($i == $pagina_atual) ? $active_style : $inactive_style;
+                        echo "<a href='$url' style='$style'>$i</a>";
+                    }
+
+                    // Mostra link para última página se necessário
+                    if ($pagina_atual < $total_paginas - 2) {
+                        if ($pagina_atual < $total_paginas - 3) {
+                            echo "<span style='margin: 0 5px;'>...</span>";
+                        }
+                        $params['pagina'] = $total_paginas;
+                        $url = '?' . http_build_query($params);
+                        echo "<a href='$url' style='$inactive_style'>$total_paginas</a>";
+                    }
+                    ?>
+                </div>
             <?php endif; ?>
         </div>
     </div>

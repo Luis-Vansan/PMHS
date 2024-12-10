@@ -194,3 +194,9 @@ a[href="feed.php"]:hover {
     font-size: 14px;
     color: li;
 }
+
+.paginacao a:hover {
+    background-color: #0056b3 !important;
+    color: white !important;
+    text-decoration: none;
+}
