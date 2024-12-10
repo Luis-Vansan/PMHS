@@ -144,7 +144,6 @@
             <h3></h3>
             <p>No PMHS (Práticas para Melhorar a Saúde), acreditamos que o equilíbrio entre saúde física e mental é essencial para o desempenho esportivo. Nosso site oferece informações confiáveis, baseadas em estudos científicos, para ajudar praticantes de esportes e atividades físicas a evitar lesões, melhorar o rendimento e enfrentar desafios emocionais, como a ansiedade durante competições.</p>
             <p>Inspirados por nossas experiências em esportes como futsal, basquete e vôlei, reunimos dicas práticas e orientações psicológicas para promover um desempenho seguro e eficiente. Valorizamos a ciência, a acessibilidade e o bem-estar integral, sendo uma fonte confiável para quem busca transformar o cuidado com a saúde em um diferencial positivo e alcançar o seu melhor.</p>            
-            <a href="#" class="btn">learn more</a>
         </div>
 
     </div>
