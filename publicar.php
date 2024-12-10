@@ -64,7 +64,8 @@ if (!$result_tags) {
     <div class="container centro">
     <form method="POST" action="">
         <div>
-            <input type="text" name="nome" placeholder="Seu nome ou apelido" style="width: 200px; padding: 5px; font-size: 14px;" required>
+            <br>
+            <input type="text" name="nome" placeholder="Nome do exercício" style="width: 200px; padding: 5px; font-size: 14px;" required>
             <br><br>
             <textarea class="textinho" name="conteudo" placeholder="Sobre" rows="7" style="width: 400px; padding: 5px; font-size: 14px;" required></textarea>
             <br><br>
