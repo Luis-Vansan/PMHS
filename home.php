@@ -167,7 +167,7 @@
             <h3>Luis Vansan</h3>
             <p><strong>Cargo:</strong> Desenvolvedor Back-end</p>
             <p>Luis é um estudante dedicado do IFSP-CMP, com uma forte paixão por desenvolvimento de soluções back-end. Ele possui habilidades em PHP, JavaScript e frameworks, e está sempre em busca de aprender novas tecnologias para melhorar suas habilidades.</p>
-            <p><a href="https://www.instagram.com/luis.vansan.5/" target="_blank">Instagram</a> | <a href="https://github.com/Luis-Vansan" target="_blank">GitHub</a></p>
+            <p><a style="color: #1abc9c" href="https://www.instagram.com/luis.vansan.5/" target="_blank">Instagram</a> | <a style="color: #1abc9c" href="https://github.com/Luis-Vansan" target="_blank">GitHub</a></p>
         </div>
 
         <!-- Desenvolvedor 2 -->
@@ -176,7 +176,7 @@
             <h3>Pedro Miguel</h3>
             <p><strong>Cargo:</strong> Desenvolvedor Front-end</p>
             <p>Pedro é um estudante do IFSP-CMP com um forte foco em desenvolvimento front-end. Ele se destaca na criação de interfaces de usuário intuitivas e responsivas, utilizando tecnologias como HTML, CSS e JavaScript. Ele está sempre buscando aprimorar suas habilidades e contribuir para projetos desafiadores.</p>
-            <p><a href="https://www.instagram.com/pedro_sarur/" target="_blank">Instagram</a> | <a href="https://github.com/Pedro-Miguel-S" target="_blank">GitHub</a></p>
+            <p><a style="color: #1abc9c" href="https://www.instagram.com/pedro_sarur/" target="_blank">Instagram</a> | <a style="color: #1abc9c" href="https://github.com/Pedro-Miguel-S" target="_blank">GitHub</a></p>
         </div>
 
         <!-- Desenvolvedor 3 -->
@@ -185,7 +185,7 @@
             <h3>Matheus Santos</h3>
             <p><strong>Cargo:</strong> Analista de Dados</p>
             <p>Matheus é um estudante do IFSP-CMP com experiência em análise de dados e manipulação de grandes volumes de informação. Ele possui um grande interesse em encontrar insights valiosos e aplicar soluções analíticas para apoiar a tomada de decisões. Com habilidades em ferramentas de análise de dados, Matheus busca contribuir para a eficiência dos projetos do time.</p>
-            <p><a href="https://www.instagram.com/_matsans/" target="_blank">Instagram</a> | <a href="https://github.com/Mat800yy" target="_blank">GitHub</a></p>
+            <p><a style="color: #1abc9c" href="https://www.instagram.com/_matsans/" target="_blank">Instagram</a> | <a style="color: #1abc9c" href="https://github.com/Mat800yy" target="_blank">GitHub</a></p>
         </div>
 
     </div>
