@@ -146,7 +146,7 @@ $total_paginas = ceil($total_posts / $posts_por_pagina);
                         <?php if ($row['media_type'] === 'youtube' && !empty($row['video_url'])): ?>
                             <?php $videoId = getYoutubeVideoId($row['video_url']); ?>
                             <?php if ($videoId): ?>
-                                <div class="video-container" style="position: relative; padding-bottom: 30%; height: 0; overflow: hidden; margin: 0 auto 20px; max-width: 500px;">
+                                <div class="video-container" style="position: relative; padding-bottom: 30%; height: 0; overflow: hidden; margin: 0 auto 20px; max-width:500px;">
                                     <iframe 
                                         style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
                                         src="https://www.youtube.com/embed/<?= $videoId ?>"
@@ -160,14 +160,15 @@ $total_paginas = ceil($total_posts / $posts_por_pagina);
                             <?php endif; ?>
                         <?php elseif ($row['media_type'] === 'gif' && !empty($row['gif_url'])): ?>
                             <div style="text-align: center; margin-bottom: 20px;">
-                                <img src="<?= htmlspecialchars($row['gif_url']) ?>" alt="GIF" style="max-width: 200px; width: 100%;">
+                                <img src="<?= htmlspecialchars($row['gif_url']) ?>" alt="GIF" style="max-width: 500px; width: 100%;">
                             </div>
                         <?php endif; ?>
 
-                        <p style="margin: 0 0 10px 20px; white-space: pre-wrap; word-break: break-word; text-align: justify;"><?= nl2br(htmlspecialchars($row['conteudo'])) ?></p>
-                        <p style="margin: 0 0 10px 20px;"><strong>Tipo(s):</strong> <?= htmlspecialchars($row['tipos']) ?></p>
+                        <p style="margin: 0 20px 10px 20px; white-space: pre-wrap; word-break: break-word; text-align: justify;"><?= nl2br(htmlspecialchars($row['conteudo'])) ?></p>
+                        <br>
+                        <p style="margin: 0 20 10px 20px;"><strong>Tipo(s):</strong> <?= htmlspecialchars($row['tipos']) ?></p>
                         <p class="timestamp" style="margin: 0 0 10px 20px;">Publicado em: <?= date('d/m/Y H:i', strtotime($row['data_post'])) ?></p>
-                        <p style="margin: 0 0 10px 20px;"><strong>Fonte:</strong> <a style="color: #1abc9c;" href="<?= htmlspecialchars($row['fonte']) ?>" target="_blank"><?= htmlspecialchars($row['fonte']) ?></a></p>
+                        <p style="margin: 0 20 10px 20px;"><strong>Fonte:</strong> <a style="color: #1abc9c;" href="<?= htmlspecialchars($row['fonte']) ?>" target="_blank"><?= htmlspecialchars($row['fonte']) ?></a></p>
 
                         <!-- Botões de ações -->
                         <div class="actions">
@@ -199,9 +200,9 @@ $total_paginas = ceil($total_posts / $posts_por_pagina);
                     }
 
                     // Estilo para os links de paginação
-                    $link_style = "display: inline-block; padding: 5px 10px; margin: 0 2px; text-decoration: none; border: 1px solid #007bff; border-radius: 3px;";
-                    $active_style = $link_style . "background-color: #007bff; color: white;";
-                    $inactive_style = $link_style . "background-color: white; color: #007bff;";
+                    $link_style = "display: inline-block; padding: 5px 10px; margin: 0 2px; text-decoration: none; border: 1px solid #10243e; border-radius: 3px;";
+                    $active_style = $link_style . "background-color: #1abc9c; color: white;";
+                    $inactive_style = $link_style . "background-color: white; color: #10243e;";
 
                     // Mostra link para primeira página se necessário
                     if ($pagina_atual > 3) {
