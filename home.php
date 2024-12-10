@@ -30,11 +30,10 @@
 
     <nav class="navbar">
         <a href="#home">HOME</a>
-        <a href="#about">ABOUT</a>
-        <a href="#menu">MENU</a>
-        <a href="#review">REVIEW</a>
-        <a href="#contact">CONTACT</a>
-        <a href="#blogs">BLOGS</a>
+        <a href="#blogs">EXERCÍCIOS</a>
+        <a href="#about">SOBRE</a>
+        <a href="#review">DEVS</a>
+        <a href="#contact">CONTATO</a>
     </nav>
 
     <div class="icons">
@@ -133,7 +132,7 @@
 
 <section class="about" id="about">
 
-    <h1 class="heading"> <span>about</span> us </h1>
+    <h1 class="heading"> <span>Sobre</span> nós </h1>
 
     <div class="row">
 
@@ -159,7 +158,7 @@
 <!-- review section starts  -->
 
 <section class="review" id="review">
-    <h1 class="heading">PMHS <span>Developers</span></h1>
+    <h1 class="heading">PMHS <span>Desenvolvedores</span></h1>
     <div class="box-container">
 
         <!-- Desenvolvedor 1 -->
@@ -182,7 +181,7 @@
 
         <!-- Desenvolvedor 3 -->
         <div class="box">
-            <img src="images/pic-3.png" class="user" alt="Foto de Matheus Santos">
+            <img src="images/Matheus.jpeg" class="user" alt="Foto de Matheus Santos">
             <h3>Matheus Santos</h3>
             <p><strong>Cargo:</strong> Analista de Dados</p>
             <p>Matheus é um estudante do IFSP-CMP com experiência em análise de dados e manipulação de grandes volumes de informação. Ele possui um grande interesse em encontrar insights valiosos e aplicar soluções analíticas para apoiar a tomada de decisões. Com habilidades em ferramentas de análise de dados, Matheus busca contribuir para a eficiência dos projetos do time.</p>
@@ -240,10 +239,10 @@
 
     <div class="links">
         <a href="#">home</a>
-        <a href="#">about</a>
-        <a href="#">review</a>
-        <a href="#">contact</a>
-        <a href="#">blogs</a>
+        <a href="#about">sobre</a>
+        <a href="#review">devs</a>
+        <a href="#contact">contato</a>
+        <a href="#blogs">exercícios</a>
     </div>
 
     <div class="credit">created by <span>PMHS Developers</span> | all rights reserved</div>
